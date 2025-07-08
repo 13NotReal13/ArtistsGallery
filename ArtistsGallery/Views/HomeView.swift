@@ -13,19 +13,7 @@ struct HomeView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Image(systemName: "magnifyingglass")
-                    .foregroundStyle(.gray)
-                
-                TextField("Search", text: $searchText)
-                    .autocorrectionDisabled()
-            }
-            .padding()
-            .background {
-                RoundedRectangle(cornerRadius: 15)
-                    .foregroundStyle(.gray.opacity(0.1))
-            }
-            .padding()
+            SearchBarView(searchText: $searchText)
             
             ScrollView(.vertical) {
                 ForEach(artists, id: \.name) { artist in
