@@ -1,0 +1,41 @@
+//
+//  ArtistCardView.swift
+//  ArtistsGallery
+//
+//  Created by Иван Семикин on 08/07/2025.
+//
+
+import SwiftUI
+
+struct Artist {
+    let name = "Pablo Picasso"
+    let info = "Pablo Ruiz y Picasso (25 October 1881 – 8 April 19..."
+}
+
+struct ArtistCardView: View {
+    var artist = Artist()
+    
+    var body: some View {
+        HStack {
+            Image("Picasso")
+                .frame(width: 96, height: 96)
+            
+            VStack(alignment: .leading) {
+                Text(artist.name)
+                    .foregroundStyle(.gray)
+                
+                Spacer()
+                
+                Text(artist.info)
+                    .lineLimit(2)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            .padding()
+        }
+        .frame(height: 96)
+    }
+}
+
+#Preview {
+    ArtistCardView()
+}
