@@ -13,14 +13,16 @@ struct Artist {
 }
 
 struct ArtistCardView: View {
-    var artist = Artist()
+    var artist: Artist
     
     var body: some View {
-        HStack {
+        HStack(spacing: 16) {
             Image("Picasso")
                 .frame(width: 96, height: 96)
             
             VStack(alignment: .leading) {
+                Spacer()
+                
                 Text(artist.name)
                     .foregroundStyle(.gray)
                 
@@ -29,13 +31,14 @@ struct ArtistCardView: View {
                 Text(artist.info)
                     .lineLimit(2)
                     .fixedSize(horizontal: false, vertical: true)
+                
+                Spacer()
             }
-            .padding()
         }
-        .frame(height: 96)
+        .frame(width: .infinity, height: 96)
     }
 }
 
 #Preview {
-    ArtistCardView()
+    ArtistCardView(artist: Artist())
 }
