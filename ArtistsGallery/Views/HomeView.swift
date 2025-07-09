@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var searchText: String = ""
-    let artists: [Artist] = (0...10).map { _ in Artist() }
+    let artists: [ArtistTest] = (0...10).map { _ in ArtistTest() }
     
     var body: some View {
         VStack {

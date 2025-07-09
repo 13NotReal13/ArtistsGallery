@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct Artist {
+struct ArtistTest {
     let name = "Pablo Picasso"
     let info = "Pablo Ruiz y Picasso (25 October 1881 – 8 April 19..."
 }
 
 struct ArtistCardView: View {
-    var artist: Artist
+    var artist: ArtistTest
     
     var body: some View {
         HStack(spacing: 16) {
@@ -40,5 +40,5 @@ struct ArtistCardView: View {
 }
 
 #Preview {
-    ArtistCardView(artist: Artist())
+    ArtistCardView(artist: ArtistTest())
 }
