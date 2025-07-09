@@ -7,18 +7,18 @@
 
 import Foundation
 
-struct ArtistList {
+struct ArtistList: Decodable {
     let artists: [Artist]
 }
 
-struct Artist {
+struct Artist: Decodable {
     let name: String
     let bio: String
     let image: String
     let works: [Work]
 }
 
-struct Work {
+struct Work: Decodable {
     let title: String
     let image: String
     let info: String
