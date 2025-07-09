@@ -8,7 +8,11 @@
 import Foundation
 
 final class APIService {
+    static let shared = APIService()
+    
     private let urlString = "https://cdn.accelonline.io/OUR6G_IgJkCvBg5qurB2Ag/files/YPHn3cnKEk2NutI6fHK04Q.json"
+    
+    private init() {}
     
     func fetchArtistList() async throws -> ArtistList {
         guard let url = URL(string: urlString) else {
