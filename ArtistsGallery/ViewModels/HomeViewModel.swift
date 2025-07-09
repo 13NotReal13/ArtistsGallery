@@ -7,18 +7,20 @@
 
 import Foundation
 
+@MainActor
 final class HomeViewModel: ObservableObject {
     @Published var artistList: [Artist] = []
     
+    var isLoading = true
+    
     private let apiService = APIService.shared
-    private var isLoading = true
     private var errorMessage: String?
     
     func getArtistList() async {
-        guard !isLoading else { return }
+        guard isLoading else { return }
         
         do {
-            let artistList = try await apiService.fetchArtistList()
+            artistList = try await apiService.fetchArtistList().artists
         } catch {
             errorMessage = error.localizedDescription
         }

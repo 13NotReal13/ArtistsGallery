@@ -8,20 +8,28 @@
 import SwiftUI
 
 struct HomeView: View {
+    @StateObject private var viewModel = HomeViewModel()
     @State private var searchText: String = ""
-    let artists: [ArtistTest] = (0...10).map { _ in ArtistTest() }
     
     var body: some View {
         VStack {
             SearchBarView(searchText: $searchText)
             
             ScrollView(.vertical) {
-                ForEach(artists, id: \.name) { artist in
+                ForEach(viewModel.artistList, id:\.name) { artist in
                     ArtistCardView(artist: artist)
                 }
             }
             .ignoresSafeArea()
             .scrollIndicators(.hidden)
+            .overlay {
+                if viewModel.isLoading {
+                    ProgressView()
+                }
+            }
+        }
+        .task {
+            await viewModel.getArtistList()
         }
     }
 }
