@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct ArtistsGalleryApp: App {
+    private var coordinator = Coordinator()
+    
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            CoordinatorView()
+                .environmentObject(coordinator)
         }
     }
 }
