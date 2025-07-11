@@ -15,11 +15,9 @@ final class APIService {
     private init() {}
     
     func fetchArtistList() async throws -> ArtistList {
-        print("1.1")
         guard let url = URL(string: urlString) else {
             throw URLError(.badURL)
         }
-        print("1.2")
         
         let (data, _ ) = try await URLSession.shared.data(from: url)
         let artistList = try JSONDecoder().decode(ArtistList.self, from: data)
