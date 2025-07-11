@@ -13,7 +13,10 @@ struct ArtistCardView: View {
     var body: some View {
         HStack(spacing: 16) {
             Image(artist.image)
+                .resizable()
+                .scaledToFill()
                 .frame(width: 96, height: 96)
+                .clipShape(RoundedRectangle(cornerRadius: 12))
             
             VStack(alignment: .leading) {
                 Spacer()
@@ -34,6 +37,8 @@ struct ArtistCardView: View {
     }
 }
 
-//#Preview {
-//    ArtistCardView(artist: Artist())
-//}
+#Preview {
+    let mockArtist = Artist(name: "Picasso", bio: "Like a bio of artist", image: "0", works: [])
+    
+    ArtistCardView(artist: mockArtist)
+}

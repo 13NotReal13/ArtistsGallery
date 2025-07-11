@@ -21,6 +21,7 @@ struct HomeView: View {
                 }
             }
             .ignoresSafeArea()
+            .padding(.horizontal)
             .scrollIndicators(.hidden)
             .overlay {
                 if viewModel.isLoading {
