@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    @EnvironmentObject private var coordinator: Coordinator
     @StateObject private var viewModel = HomeViewModel()
     
     var body: some View {
@@ -17,9 +18,11 @@ struct HomeView: View {
             ScrollView(.vertical) {
                 ForEach(viewModel.artistList, id:\.name) { artist in
                     ArtistCardView(artist: artist)
+                        .onTapGesture {
+                            coordinator.push(.artistDetail(artist))
+                        }
                 }
             }
-            .ignoresSafeArea()
             .padding(.horizontal)
             .scrollIndicators(.hidden)
             .overlay {
@@ -28,6 +31,8 @@ struct HomeView: View {
                 }
             }
         }
+        .toolbarTitleDisplayMode(.inlineLarge)
+        .navigationTitle("Artists")
         .task {
             await viewModel.getArtistList()
         }
@@ -35,5 +40,7 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    NavigationStack {
+        HomeView()
+    }
 }

@@ -20,10 +20,13 @@ struct WorksListView: View {
                     VStack(alignment: .leading) {
                         Image(work.image)
                             .resizable()
+                            .scaledToFill()
+                            .frame(height: 150)
                             .clipShape(.rect(cornerRadius: 12))
                         
                         Text(work.title)
                     }
+                    .padding(32)
                 }
             }
         }
