@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ArtistDetailView: View {
+    @EnvironmentObject private var coordinator: Coordinator
     let artist: Artist
     
     var body: some View {
@@ -28,6 +29,17 @@ struct ArtistDetailView: View {
             Spacer()
         }
         .ignoresSafeArea()
+        .navigationBarBackButtonHidden()
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button {
+                    coordinator.pop()
+                } label: {
+                    Image(systemName: "arrow.left")
+                        .foregroundStyle(.white)
+                }
+            }
+        }
     }
 }
 
@@ -41,5 +53,7 @@ struct ArtistDetailView: View {
         ]
     )
     
-    ArtistDetailView(artist: mockArtist)
+    NavigationStack {
+        ArtistDetailView(artist: mockArtist)
+    }
 }
