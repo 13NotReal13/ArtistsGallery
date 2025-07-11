@@ -28,6 +28,7 @@ struct ArtistDetailView: View {
             
             Spacer()
         }
+        .scrollIndicators(.hidden)
         .ignoresSafeArea()
         .navigationBarBackButtonHidden()
         .toolbar {
@@ -47,7 +48,7 @@ struct ArtistDetailView: View {
     let mockArtist = Artist(
         name: "Pablo Picasso",
         bio: "Pablo Ruiz y Picasso (25 October 1881 – 8 April 1973), also known as Pablo Picasso, was a Spanish painter, sculptor, printmaker, ceramicist, stage designer, poet and playwright who spent most of his adult life in France.",
-        image: "0",
+        image: "3",
         works: [
             Work(title: "Some title work", image: "Picasso1", info: "")
         ]

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct WorksListView: View {
+    @EnvironmentObject private var coordinator: Coordinator
+    
     let works: [Work]
     
     var body: some View {
@@ -16,7 +18,7 @@ struct WorksListView: View {
                 .fontWeight(.semibold)
             
             ScrollView {
-                ForEach(works, id:\.title) { work in
+                ForEach(works, id:\.hashValue) { work in
                     VStack(alignment: .leading) {
                         Image(work.image)
                             .resizable()
@@ -26,9 +28,14 @@ struct WorksListView: View {
                         
                         Text(work.title)
                     }
-                    .padding(32)
+                    .onTapGesture {
+                        coordinator.present(fullScreenCover: .worksImage(work))
+                    }
+                    .padding(.bottom, 16)
                 }
             }
+            .scrollIndicators(.hidden)
+            .padding(.bottom, 16)
         }
         .padding(.horizontal)
     }

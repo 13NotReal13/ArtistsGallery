@@ -14,7 +14,7 @@ struct ArtistsImageView: View {
         Image(artist.image)
             .resizable()
             .scaledToFill()
-            .frame(height: 384)
+            .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: 384)
             .clipped()
             .overlay {
                 VStack(alignment: .leading) {
@@ -32,4 +32,8 @@ struct ArtistsImageView: View {
                 .padding()
             }
     }
+}
+
+#Preview {
+    ArtistsImageView(artist: Artist(name: "", bio: "", image: "3", works: []))
 }
