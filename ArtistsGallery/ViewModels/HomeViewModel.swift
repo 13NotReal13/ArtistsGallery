@@ -10,6 +10,7 @@ import Foundation
 @MainActor
 final class HomeViewModel: ObservableObject {
     @Published var artistList: [Artist] = []
+    @Published var searchText: String = ""
     
     var isLoading = true
     

@@ -9,11 +9,10 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
-    @State private var searchText: String = ""
     
     var body: some View {
         VStack {
-            SearchBarView(searchText: $searchText)
+            SearchBarView(searchText: $viewModel.searchText)
             
             ScrollView(.vertical) {
                 ForEach(viewModel.artistList, id:\.name) { artist in
