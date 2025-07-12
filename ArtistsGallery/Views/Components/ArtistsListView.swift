@@ -13,7 +13,7 @@ struct ArtistsListView: View {
     
     var body: some View {
         ScrollView(.vertical) {
-            ForEach(viewModel.artistList, id:\.name) { artist in
+            ForEach(viewModel.filteredArtists, id:\.name) { artist in
                 ArtistCardView(artist: artist)
                     .onTapGesture {
                         coordinator.push(.artistDetail(artist))
