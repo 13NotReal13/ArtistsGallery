@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct WorkDetailView: View {
+    @EnvironmentObject private var coordinator: Coordinator
+    
     let work: Work
     
     var body: some View {
@@ -16,7 +18,7 @@ struct WorkDetailView: View {
                 .resizable()
                 .scaledToFit()
             
-            VStack {
+            VStack(alignment: .leading) {
                 Text(work.title)
                     .font(.system(size: 20, weight: .bold))
                 
@@ -29,7 +31,7 @@ struct WorkDetailView: View {
             Spacer()
             
             Button {
-                
+                coordinator.present(fullScreenCover: .worksImage(work))
             } label: {
                 Text("Развернуть")
                     .foregroundStyle(.white)
@@ -43,6 +45,17 @@ struct WorkDetailView: View {
             }
         }
         .ignoresSafeArea(edges: [.top, .horizontal])
+        .navigationBarBackButtonHidden()
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button {
+                    coordinator.pop()
+                } label: {
+                    Image(systemName: "arrow.left")
+                        .foregroundStyle(.white)
+                }
+            }
+        }
     }
 }
 

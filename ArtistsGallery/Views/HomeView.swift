@@ -13,24 +13,11 @@ struct HomeView: View {
     
     var body: some View {
         VStack {
-            SearchBarView(searchText: $viewModel.searchText)
+            SearchBarView()
             
-            ScrollView(.vertical) {
-                ForEach(viewModel.artistList, id:\.name) { artist in
-                    ArtistCardView(artist: artist)
-                        .onTapGesture {
-                            coordinator.push(.artistDetail(artist))
-                        }
-                }
-            }
-            .padding(.horizontal)
-            .scrollIndicators(.hidden)
-            .overlay {
-                if viewModel.isLoading {
-                    ProgressView()
-                }
-            }
+            ArtistsListView()
         }
+        .environmentObject(viewModel)
         .toolbarTitleDisplayMode(.inlineLarge)
         .navigationTitle("Artists")
         .task {

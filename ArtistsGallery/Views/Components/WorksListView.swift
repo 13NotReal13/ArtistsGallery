@@ -18,7 +18,7 @@ struct WorksListView: View {
                 .fontWeight(.semibold)
             
             ScrollView {
-                ForEach(works, id:\.hashValue) { work in
+                ForEach(works, id:\.image) { work in
                     VStack(alignment: .leading) {
                         Image(work.image)
                             .resizable()
@@ -29,7 +29,7 @@ struct WorksListView: View {
                         Text(work.title)
                     }
                     .onTapGesture {
-                        coordinator.present(fullScreenCover: .worksImage(work))
+                        coordinator.push(.workDetail(work))
                     }
                     .padding(.bottom, 16)
                 }
